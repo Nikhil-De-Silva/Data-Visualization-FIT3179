@@ -1,0 +1,31 @@
+{
+      "$schema": "https://vega.github.io/schema/vega-lite/v5.json",
+      "width": 600,
+      "height": 500,
+      "title":"Capitals of the 50 states in the USA",
+      "projection": {"type": "albersUsa"},
+      "layer": [
+        {
+          "data": {
+            "url": "https://github.com/vega/vega/blob/master/docs/data/us-10m.json",
+            "format": {"type": "topojson", "feature": "states"}
+          },
+          "mark": {"type": "geoshape", "fill": "gray", "stroke": "white"}
+        },
+        {
+          "data": {"url": "https://github.com/vega/vega/blob/master/docs/data/us-state-capitals.json"},
+          "encoding": {
+            "longitude": {"field": "lon", "type": "quantitative"},
+            "latitude": {"field": "lat", "type": "quantitative"}
+          },
+          "layer": [
+            {"mark": {"type": "square", "color": "red"}},
+            {
+              "mark": {"type": "text", "dy": -15},
+              "encoding": {"text": {"field": "city", "type": "nominal"}}
+            }
+          ]
+        }
+      ],
+      "config": {}
+    }
